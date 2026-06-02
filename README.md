@@ -70,7 +70,7 @@ LifeFlow is a web-based platform that combines task management with wellness tra
 | Role | Email | Password |
 |------|-------|----------|
 | Student (demo) | demo@example.com | demo1234 |
-| Admin (demo) | admin@example.com | admin1234 |
+| Admin (demo) | admin@lifeflow.com | admin123 |
 
 Note: You may need to create these accounts via the registration page first.
 
