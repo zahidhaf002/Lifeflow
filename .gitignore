@@ -1,0 +1,23 @@
+# Environment variables (contains real passwords)
+.env
+*.env
+
+# MySQL credentials file (keep private)
+includes/DatabaseConnection_mysql.php
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+error_log
+
+# Backup files
+*.bak
+*.sql
