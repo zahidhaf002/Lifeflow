@@ -86,7 +86,7 @@ The full project dissertation (12,000+ words) achieved a First Class grade and i
 
 ## Author
 
-Zahid Hafesji – BSc Computing (Extended), University of Greenwich – First Class
+Zahid Hafesji – BSc Computing, University of Greenwich – First Class
 
 GitHub: https://github.com/zahidhaf002
 LinkedIn: https://linkedin.com/in/your-profile
