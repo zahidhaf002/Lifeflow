@@ -73,9 +73,6 @@ This repository includes a SQLite database (data/data.sqlite) for instant local 
 
 For the live demo, the project uses MySQL (university server), demonstrating my ability to work with multiple database systems.
 
-## Screenshots
-(Add screenshots of your application here)
-
 ## Report
 The full project dissertation (12,000+ words) achieved a First Class grade and is available upon request.
 
