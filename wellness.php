@@ -14,14 +14,9 @@ $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_wellness'])) {
     try {
         $stmt = $pdo->prepare("
-            INSERT INTO wellness_entries (user_id, entry_date, sleep_hours, mood_rating, exercise_minutes, energy_level)
-            VALUES (?, CURDATE(), ?, ?, ?, ?)
-            ON DUPLICATE KEY UPDATE
-                sleep_hours = VALUES(sleep_hours),
-                mood_rating = VALUES(mood_rating),
-                exercise_minutes = VALUES(exercise_minutes),
-                energy_level = VALUES(energy_level)
-        ");
+    INSERT OR REPLACE INTO wellness_entries (user_id, entry_date, sleep_hours, mood_rating, exercise_minutes, energy_level)
+    VALUES (?, DATE('now'), ?, ?, ?, ?)
+");
         
         $stmt->execute([
             $userId,

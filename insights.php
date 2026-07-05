@@ -36,7 +36,7 @@ $stmt = $pdo->prepare("
         AND DATE(t.updated_at) = we.entry_date 
         AND t.status = 'completed'
     WHERE we.user_id = ? 
-        AND we.entry_date >= DATE_SUB(CURDATE(), INTERVAL 14 DAY)
+        AND we.entry_date >= DATE('now', '-14 days')
     GROUP BY we.entry_date, we.sleep_hours, we.mood_rating, we.exercise_minutes, we.energy_level
     ORDER BY we.entry_date ASC
 ");

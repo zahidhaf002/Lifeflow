@@ -28,17 +28,17 @@ function getWellnessEntries($pdo, $userId, $days = 7) {
     $stmt = $pdo->prepare("
         SELECT * FROM wellness_entries 
         WHERE user_id = ? 
-        AND entry_date >= DATE_SUB(CURDATE(), INTERVAL ? DAY)
+        AND entry_date >= DATE('now', '-$days days')
         ORDER BY entry_date DESC
     ");
-    $stmt->execute([$userId, $days]);
+    $stmt->execute([$userId]);
     return $stmt->fetchAll();
 }
 
 function getTodaysWellness($pdo, $userId) {
     $stmt = $pdo->prepare("
         SELECT * FROM wellness_entries 
-        WHERE user_id = ? AND entry_date = CURDATE()
+        WHERE user_id = ? AND entry_date = DATE('now')
     ");
     $stmt->execute([$userId]);
     return $stmt->fetch();
@@ -47,21 +47,21 @@ function getTodaysWellness($pdo, $userId) {
 function calculateInsights($pdo, $userId) {
     // Get last 30 days of data
     $stmt = $pdo->prepare("
-        SELECT 
-            we.entry_date,
-            we.sleep_hours,
-            we.mood_rating,
-            we.exercise_minutes,
-            COUNT(t.task_id) as tasks_completed
-        FROM wellness_entries we
-        LEFT JOIN tasks t ON t.user_id = we.user_id 
-            AND DATE(t.updated_at) = we.entry_date 
-            AND t.status = 'completed'
-        WHERE we.user_id = ? 
-            AND we.entry_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
-        GROUP BY we.entry_date, we.sleep_hours, we.mood_rating, we.exercise_minutes
-        ORDER BY we.entry_date DESC
-    ");
+    SELECT 
+        we.entry_date,
+        we.sleep_hours,
+        we.mood_rating,
+        we.exercise_minutes,
+        COUNT(t.task_id) as tasks_completed
+    FROM wellness_entries we
+    LEFT JOIN tasks t ON t.user_id = we.user_id 
+        AND DATE(t.updated_at) = we.entry_date 
+        AND t.status = 'completed'
+    WHERE we.user_id = ? 
+        AND we.entry_date >= DATE('now', '-30 days')
+    GROUP BY we.entry_date, we.sleep_hours, we.mood_rating, we.exercise_minutes
+    ORDER BY we.entry_date DESC
+");
     $stmt->execute([$userId]);
     $data = $stmt->fetchAll();
     

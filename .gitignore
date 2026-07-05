@@ -20,4 +20,8 @@ error_log
 
 # Backup files
 *.bak
+<<<<<<< HEAD
 *.sql
+=======
+*.sql
+>>>>>>> a8612d26440173a621815c3dc810dbbe079f2fa4
